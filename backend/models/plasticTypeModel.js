@@ -9,12 +9,11 @@ const plasticTypeShema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, 'Vous devez entrez une description pour le type de plastique'],
-     
+      required: [true, 'Vous devez entrez une description pour le type de plastique'], 
     },
     
   },
   { timestamps: true }
-)
+) 
 
 module.exports = mongoose.model('PlasticType', plasticTypeShema)
