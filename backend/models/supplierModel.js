@@ -24,4 +24,4 @@ const supplierShema = mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('SupplierRecipe', supplierShema)
+module.exports = mongoose.model('Supplier', supplierShema)
