@@ -8,3 +8,4 @@ const router = express.Router()
 const {protect} = require('../middleware/authMiddleware')
 
 
+router.route('/').get(protect , getAdresses).post(protect)

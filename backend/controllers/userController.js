@@ -13,7 +13,7 @@ const User = require('../models/userModel')
 // @route :  /api/users
 // @ access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body
+  const { username, email, password, isAdmin} = req.body
   // validation
    if (!username) {
     res.status(400)
@@ -41,6 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     username,
     email,
+    isAdmin,
     password: hashedPassword,
   })
   if (user) {
@@ -77,7 +78,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Impossible de se connecter mot de passe ou e-mail incorrect !')
   }
 
-  res.send('Login Route')
+
 })
 
 // @desc Get current User
@@ -103,8 +104,16 @@ const generateToken = (id) => {
   })
 }
 
+
+
+
+
+
+
+
 module.exports = {
   registerUser,
   loginUser,
   getMe,
+ 
 }
