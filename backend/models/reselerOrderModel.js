@@ -8,12 +8,6 @@ const reselerOrderShema = mongoose.Schema(
         ref: 'Reseler',
     },
   
-    orderLines: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: [true],
-        ref: 'ReselerOrderLine',
-    },
-     
      orderNum: {
         type: String,
         required: [true, 'Vous devez entrer un numéro de commande'],

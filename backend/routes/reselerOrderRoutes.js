@@ -3,13 +3,13 @@ const express = require('express')
 
 // ==== Variables & initialisation
 const router = express.Router()
-const {getOrders, createOrder} = require('../controllers/reselerOrderController')
+const {getReselerOrders, createReselerOrder} = require('../controllers/reselerOrderController')
 
 // ==== Middlewares
 const {protect} = require('../middleware/authMiddleware')
 
 
-router.route('/').get(getOrders).post(protect, createOrder)
+router.route('/').get( protect, getReselerOrders).post(protect, createReselerOrder)
 
 
 
