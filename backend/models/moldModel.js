@@ -23,6 +23,10 @@ const moldShema = mongoose.Schema(
       type: Number,
       required: [true, 'Vous devez une hauteur en CM pour ce moule'],
     },
+    motor: {
+      type: Number,
+      required: [true, 'Vous devez une hauteur en CM pour ce moule'],
+    },
   },
   { timestamps: true },
 )

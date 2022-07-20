@@ -5,7 +5,7 @@ const adresseShema = mongoose.Schema(
     numero: {
       type: String,
       required: [true, 'Vous devez entrez un numéro de rue'],
-      unique: true,
+
     },
     rue: {
       type: String,
