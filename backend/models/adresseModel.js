@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const adresseShema = mongoose.Schema(
   {
+    city: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: [true],
+      ref: 'City',
+  },
     numero: {
       type: String,
       required: [true, 'Vous devez entrez un numéro de rue'],
