@@ -10,25 +10,25 @@ const User = require('../models/userModel')
 // @route :  /api/users
 // @ access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, isAdmin} = req.body
+  const { username, email, password, isAdmin } = req.body
   // validation
-   if (!username) {
+  if (!username) {
     res.status(400)
-    throw new Error("Vous devez entrer un nom d’utilisateur.")
+    throw new Error('Vous devez entrer un nom d’utilisateur.')
   }
-   if (!password) {
+  if (!password) {
     res.status(400)
-    throw new Error("Vous devez choisir un mot de passe.")
+    throw new Error('Vous devez choisir un mot de passe.')
   }
-   if (!email) {
+  if (!email) {
     res.status(400)
-    throw new Error("Vous devez entrer votre e-mail.")
+    throw new Error('Vous devez entrer votre e-mail.')
   }
   // Find if user already exist
   const userExists = await User.findOne({ email })
   if (userExists) {
     res.status(400)
-    throw new Error("Cet utilisateur existe déjà ! Essayer de vous connecter.")
+    throw new Error('Cet utilisateur existe déjà ! Essayer de vous connecter.')
   }
   // Hash password
   const salt = await bcrypt.genSalt(10)
@@ -72,26 +72,34 @@ const loginUser = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(401)
-    throw new Error('Impossible de se connecter mot de passe ou e-mail incorrect !')
+    throw new Error(
+      'Impossible de se connecter mot de passe ou e-mail incorrect !',
+    )
   }
-
-
 })
 
 // @desc Get current User
 // @route /api/users/me
 // @ access Private
-///===== TODO : fix error for this function user = null
-const getMe = asyncHandler(async (req, res) => {
 
-  const user = {
-    id: req.user._id,
-    email: req.user.email,
-    username: req.user.username,
-    isAdmin: req.user.isAdmin,
+const getMe = asyncHandler(async (req, res) => {
+ 
+  if(!req.user) {
+
+    res.status(401)
+    throw new Error(
+      "Vous n'êtes pas autorisé a acceder a ces données.",
+    )
+  } else {
+    const user = {
+      id: req.user._id,
+      email: req.user.email,
+      username: req.user.username,
+      isAdmin: req.user.isAdmin,
+    }
+
+    res.status(200).json(user)
   }
-  res.status(200).json(user)
-  res.send("this is me")
 })
 
 // Generate token
@@ -101,16 +109,8 @@ const generateToken = (id) => {
   })
 }
 
-
-
-
-
-
-
-
 module.exports = {
   registerUser,
   loginUser,
   getMe,
- 
 }

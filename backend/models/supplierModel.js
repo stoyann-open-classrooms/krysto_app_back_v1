@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const supplierShema = mongoose.Schema(
   {
-    contact: {
+    adresse: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true],
-        ref: 'Contact',
+        ref: 'Adresse',
     },
     nom: {
       type: String,
@@ -19,6 +19,10 @@ const supplierShema = mongoose.Schema(
     description: {
       type: String,
       required: [true, 'Vous devez entrez une déscription a cette couleur'],
+    },
+    phone: {
+      type: Number,
+      required: [true, 'Vous devez entrez un numéro de télèphone'],
     },
   },
   { timestamps: true }

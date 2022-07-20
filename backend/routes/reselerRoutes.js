@@ -6,6 +6,7 @@ const router = express.Router()
 const {
   registerReseler,
   loginReseler,
+  getMe,
 } = require('../controllers/reselerController')
 
 // ==== Middlewares
@@ -13,6 +14,6 @@ const { protect } = require('../middleware/authMiddleware')
 
 router.post('/', registerReseler)
 router.post('/login', loginReseler)
-
+router.get('/me', protect, getMe)
 
 module.exports = router

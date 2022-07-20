@@ -4,10 +4,4 @@ const asyncHandler = require('express-async-handler')
 const Adresse = require('../models/adresseModel')
 const User = require('../models/userModel')
 
-
-  
-
-module.exports = {
-
-   
-  }
+module.exports = {}

@@ -26,13 +26,13 @@ app.get('/', (req, res) => {
   res.status(200).send({ message: `Bienvenue sur l'api de krysto` })
 })
 
-
 //User routes
 app.use('/api/users', require('./routes/userRoutes'))
 //Reseler routes
 app.use('/api/reselers', require('./routes/reselerRoutes'))
 //Employe routes
 app.use('/api/employes', require('./routes/employeRoutes'))
+
 
 // ==== Start server
 app.listen(PORT, () =>

@@ -10,11 +10,31 @@ const Employe = require('../models/employeModel')
 // @route :  /api/users
 // @ access Public
 const registerEmploye = asyncHandler(async (req, res) => {
-  const { name, email, password} = req.body
+  const { name, lastname, email, password, birthDate, genre, phone , cafatId } = req.body
   // validation
    if (!name) {
     res.status(400)
     throw new Error("Vous devez entrer un nom.")
+  }
+   if (!lastname) {
+    res.status(400)
+    throw new Error("Vous devez entrer votre prénom.")
+  }
+   if (!birthDate) {
+    res.status(400)
+    throw new Error("Vous devez entrer votre date de naissance.")
+  }
+   if (!genre) {
+    res.status(400)
+    throw new Error("Vous devez entrer un genre.")
+  }
+   if (!phone) {
+    res.status(400)
+    throw new Error("Vous devez entrer un numèro de télèphone.")
+  }
+   if (!cafatId) {
+    res.status(400)
+    throw new Error("Vous devez entrer le numéro cafat de l'employé.")
   }
    if (!password) {
     res.status(400)
@@ -37,6 +57,11 @@ const registerEmploye = asyncHandler(async (req, res) => {
   // Create employe
   const employe = await Employe.create({
     name,
+    lastname,
+    birthDate,
+    genre,
+    phone,
+    cafatId,
     email,
     password: hashedPassword,
   })
@@ -44,6 +69,11 @@ const registerEmploye = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: employe._id,
       name: employe.name,
+      lastname: employe.lastname,
+      birthDate: employe.birthDate,
+      genre: employe.genre,
+      phone: employe.phone,
+      cafatId: employe.cafatId,
       email: employe.email,
       token: generateToken(employe._id),
     })
@@ -65,7 +95,7 @@ const loginEmploye = asyncHandler(async (req, res) => {
   if (employe && (await bcrypt.compare(password, employe.password))) {
     res.status(200).json({
       _id: employe._id,
-      username: employe.username,
+      name: employe.name,
       email: employe.email,
       token: generateToken(employe._id),
     })
@@ -76,6 +106,36 @@ const loginEmploye = asyncHandler(async (req, res) => {
 
 
 })
+
+
+
+
+// @desc Get current Reseler
+// @route /api/reselers/me
+// @ access Private
+
+const getMe = asyncHandler(async (req, res) => {
+ 
+  if(!req.employe) {
+
+    res.status(401)
+    throw new Error(
+      "Vous n'êtes pas autorisé a acceder a ces données. Merci de vous connecter",
+    )
+  } else {
+    const employe = {
+      id: req.employe._id,
+      email: req.employe.email,
+      name: req.employe.name,
+   
+    }
+
+    res.status(200).json(employe)
+  }
+})
+
+
+
 
 
 // Generate token
@@ -90,4 +150,5 @@ const generateToken = (id) => {
 module.exports = {
   registerEmploye,
   loginEmploye,
+  getMe,
 }

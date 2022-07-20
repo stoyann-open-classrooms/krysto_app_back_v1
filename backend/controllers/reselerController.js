@@ -6,11 +6,11 @@ const jwt = require('jsonwebtoken')
 // ==== Models
 const Reseler = require('../models/reselerModel')
 
-// @desc :  Register a new user
-// @route :  /api/users
+// @desc :  Register a new reseler
+// @route :  /api/reselers
 // @ access Public
 const registerReseler = asyncHandler(async (req, res) => {
-  const { name, email, password} = req.body
+  const { name, email, password, phone} = req.body
   // validation
    if (!name) {
     res.status(400)
@@ -23,6 +23,10 @@ const registerReseler = asyncHandler(async (req, res) => {
    if (!email) {
     res.status(400)
     throw new Error("Vous devez entrer votre e-mail.")
+  }
+   if (!phone) {
+    res.status(400)
+    throw new Error("Vous devez entrer un numéro de télèphone.")
   }
   // Find if reseler already exist
   const reselerExists = await Reseler.findOne({ email })
@@ -38,13 +42,15 @@ const registerReseler = asyncHandler(async (req, res) => {
   const reseler = await Reseler.create({
     name,
     email,
+    phone,
     password: hashedPassword,
   })
   if (reseler) {
     res.status(201).json({
       _id: reseler._id,
-      username: reseler.username,
+      name: reseler.name,
       email: reseler.email,
+      phone: reseler.phone,
       token: generateToken(reseler._id),
     })
   } else {
@@ -65,7 +71,7 @@ const loginReseler = asyncHandler(async (req, res) => {
   if (reseler && (await bcrypt.compare(password, reseler.password))) {
     res.status(200).json({
       _id: reseler._id,
-      username: reseler.username,
+      name: reseler.name,
       email: reseler.email,
       token: generateToken(reseler._id),
     })
@@ -78,6 +84,30 @@ const loginReseler = asyncHandler(async (req, res) => {
 })
 
 
+
+// @desc Get current Reseler
+// @route /api/reselers/me
+// @ access Private
+
+const getMe = asyncHandler(async (req, res) => {
+ 
+    if(!req.reseler) {
+  
+      res.status(401)
+      throw new Error(
+        "Vous n'êtes pas autorisé a acceder a ces données. Merci de vous connecter",
+      )
+    } else {
+      const reseler = {
+        id: req.reseler._id,
+        email: req.reseler.email,
+        name: req.reseler.name,
+     
+      }
+  
+      res.status(200).json(reseler)
+    }
+  })
 // Generate token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -90,4 +120,5 @@ const generateToken = (id) => {
 module.exports = {
   registerReseler,
   loginReseler,
+  getMe,
 }

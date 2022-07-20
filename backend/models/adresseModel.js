@@ -2,15 +2,10 @@ const mongoose = require('mongoose')
 
 const adresseShema = mongoose.Schema(
   {
-    city: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: [true],
-      ref: 'City',
-  },
+
     numero: {
       type: String,
       required: [true, 'Vous devez entrez un numéro de rue'],
-
     },
     rue: {
       type: String,
@@ -29,9 +24,8 @@ const adresseShema = mongoose.Schema(
       type: String,
       required: false,
     },
-    
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 module.exports = mongoose.model('Adresse', adresseShema)

@@ -16,6 +16,10 @@ const reselerShema = mongoose.Schema(
       type: String,
       required: [true, 'Vous devez entrez un mot de passe'],
     },
+    phone: {
+        type: Number,
+        required: [true, 'Vous devez entrez un numéro de télèphone'],
+      },
   },
   { timestamps: true },
 )
