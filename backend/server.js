@@ -32,4 +32,4 @@ app.use('/api/users', require('./routes/userRoutes'))
 
 
 // ==== Start server
-app.listen(PORT, () => console.log(`========= Server started on port  http://localhost:${PORT} ========`.white.underline.bold.bgGreen))
+app.listen(PORT, () => console.log(`========= Server started on port  http://localhost:${PORT} ========`.white.underline.bold.bgRed))

@@ -1,10 +1,12 @@
-// ==== Dependances
+// ==== Dépendances
 const express = require('express')
 
+// ==== Variables & initialisation
 
 const router = express.Router()
 const {registerUser, loginUser, getMe} =  require('../controllers/userController')
 
+// ==== Middlewares
 const {protect} = require('../middleware/authMiddleware')
 
 router.post('/', registerUser)

@@ -5,9 +5,6 @@ const asyncHandler = require('express-async-handler')
 // ==== Models
 const User = require('../models/userModel')
 
-
-
-
 const protect = asyncHandler(async (req, res, next) => {
   let token
   if (
