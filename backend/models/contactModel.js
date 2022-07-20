@@ -2,10 +2,20 @@ const mongoose = require('mongoose')
 
 const contactShema = mongoose.Schema(
   {
-    user: {
+    users: {
         type: mongoose.Schema.Types.ObjectId,
         required: [false],
         ref: 'User',
+      },
+    reselers: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [false],
+        ref: 'Reseler',
+      },
+    employes: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [false],
+        ref: 'Employe',
       },
     adresse: {
         type: mongoose.Schema.Types.ObjectId,

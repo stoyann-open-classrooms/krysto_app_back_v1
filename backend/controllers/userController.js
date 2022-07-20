@@ -6,9 +6,6 @@ const jwt = require('jsonwebtoken')
 // ==== Models
 const User = require('../models/userModel')
 
-
-
-
 // @desc :  Register a new user
 // @route :  /api/users
 // @ access Public

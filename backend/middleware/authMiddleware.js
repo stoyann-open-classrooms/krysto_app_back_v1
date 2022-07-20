@@ -4,6 +4,8 @@ const asyncHandler = require('express-async-handler')
 
 // ==== Models
 const User = require('../models/userModel')
+const Reseler = require('../models/reselerModel')
+const Employe = require('../models/reselerModel')
 
 const protect = asyncHandler(async (req, res, next) => {
   let token
@@ -16,8 +18,13 @@ const protect = asyncHandler(async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1]
       // verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
-      // Get user from token
-      req.user = await User.findById(decoded.id).select('-password')
+      // Get user ou reseler from token
+      req.user =
+        (await User.findById(decoded.id).select('-password')) ||
+        (await Reseler.findById(decoded.id).select('-password')) ||
+        (await Employe.findById(decoded.id).select('-password')) ||
+   
+
       next()
     } catch (error) {
       console.log(error)
