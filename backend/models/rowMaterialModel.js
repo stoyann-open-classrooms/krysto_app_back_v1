@@ -16,6 +16,11 @@ const rowMaterialShema = mongoose.Schema(
         required: [true, 'Merci de selectioner un type de matiére'],
         enum: ['plastique', 'Electronique', 'Consomable', "Outillage", 'Autres'],
       },
+    notes: {
+        type: String,
+        required: [true, 'Merci de selectioner un type de matiére'],
+        enum: ['plastique', 'Electronique', 'Consomable', "Outillage", 'Autres'],
+      },
     
   },
   { timestamps: true }
