@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const supplierShema = mongoose.Schema(
   {
+    contact: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'Contact',
+    },
     nom: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour ce fournisseur'],

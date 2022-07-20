@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const machineProcessShema = mongoose.Schema(
   {
+   machines: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'MachinePark',
+    },
     nom: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour ce process'],

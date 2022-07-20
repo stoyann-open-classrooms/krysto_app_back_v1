@@ -2,6 +2,21 @@ const mongoose = require('mongoose')
 
 const krystoColorShema = mongoose.Schema(
   {
+    plasticType: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'PlasticType',
+    },
+    molds: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'MoldPark',
+    },
+    machines: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'MachinePark',
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez un nom de couleur'],

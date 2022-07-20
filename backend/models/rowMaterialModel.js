@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const rowMaterialShema = mongoose.Schema(
   {
+    suppliers: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'Supplier',
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour le type de plastique'],

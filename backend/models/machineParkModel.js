@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const machineParkShema = mongoose.Schema(
   {
+    
     nom: {
         type: String,
         required: [true, 'Vous devez entrez un numéro de rue'],

@@ -2,6 +2,21 @@ const mongoose = require('mongoose')
 
 const contactShema = mongoose.Schema(
   {
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [false],
+        ref: 'User',
+      },
+    adresse: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'Adresse',
+    },
+    city: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'City',
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez votre prénom'],

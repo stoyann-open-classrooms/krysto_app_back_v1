@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const machineShema = mongoose.Schema(
   {
+    supplier: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: [true],
+      ref: 'Supplier',
+  },
     nom: {
       type: String,
       required: [true, 'Vous devez entrez un numéro de rue'],
