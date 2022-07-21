@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const reselerOrderLineShema = mongoose.Schema(
   {
-    article: {
+    order: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true],
-        ref: 'Article',
+  
+        ref: 'ReselerOrder',
     },
   
     quantity: {

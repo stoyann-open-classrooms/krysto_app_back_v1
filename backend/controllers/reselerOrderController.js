@@ -7,10 +7,10 @@ const ReselerOrder = require('../models/reselerOrderModel')
 
 // @desc Get reseler Orders
 // @route /api/reselerOrders
-// @ access Private
+// @ access Private (reseler)
 
 const getReselerOrders = asyncHandler(async (req, res) => {
-  if (!req.reseler) {
+  if (!req.reseler ) {
     res.status(401)
     throw new Error(
       "Vous n'êtes pas autorisé a acceder a ces données. Merci de vous connecter",
@@ -25,10 +25,11 @@ const getReselerOrders = asyncHandler(async (req, res) => {
     const orders = await ReselerOrder.find({ reselers: req.reseler.id })
     res.status(200).json(orders)
   }
+  
 })
 // @desc Get reseler Order
 // @route GET /api/reselerOrders/:id
-// @ access Private
+// @ access Private (reseler)
 
 const getReselerOrder = asyncHandler(async (req, res) => {
   if (!req.reseler) {
@@ -59,7 +60,7 @@ const getReselerOrder = asyncHandler(async (req, res) => {
 
 // @desc Create new order
 // @route  POST /api/orders
-// @ access Private
+// @ access Private (reseler)
 const createReselerOrder = asyncHandler(async (req, res) => {
   if (!req.reseler) {
     res.status(401)
@@ -93,7 +94,7 @@ const createReselerOrder = asyncHandler(async (req, res) => {
 
 // @desc  update reseler Order
 // @route PUT /api/reselerOrders/:id
-// @ access Private
+// @ access Private (reseler)
 
 const updateReselerOrder = asyncHandler(async (req, res) => {
     if (!req.reseler) {
@@ -124,7 +125,7 @@ const updateReselerOrder = asyncHandler(async (req, res) => {
   })
 // @desc DEL reseler Order
 // @route /api/reselerOrders/:id
-// @ access Private
+// @ access Private (reseler)
 
 const deleteReselerOrder = asyncHandler(async (req, res) => {
     if (!req.reseler) {
