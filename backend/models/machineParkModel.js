@@ -2,7 +2,10 @@ const mongoose = require('mongoose')
 
 const machineParkShema = mongoose.Schema(
   {
-    
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     nom: {
         type: String,
         required: [true, 'Vous devez entrez un numéro de rue'],

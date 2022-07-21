@@ -7,6 +7,10 @@ const rowMaterialShema = mongoose.Schema(
       required: [true],
       ref: 'Supplier',
     },
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour le type de plastique'],

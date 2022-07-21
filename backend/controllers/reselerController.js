@@ -2,7 +2,9 @@
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+// image Upload dependence
+const multer = require("multer");
+const path = require("path");
 // ==== Models
 const Reseler = require('../models/reselerModel')
 
@@ -41,6 +43,7 @@ const registerReseler = asyncHandler(async (req, res) => {
   // Create user
   const reseler = await Reseler.create({
     name,
+    logo:  req.file.path,
     email,
     phone,
     password: hashedPassword,
@@ -114,6 +117,34 @@ const generateToken = (id) => {
     expiresIn: '30d',
   })
 }
+// =========================== UPLOAD IMAGE CONTROLLER ========================================
+
+const im = "profil_pic";
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/upload/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, im + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: "1000000" },
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimeType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+
+    if (mimeType && extname) {
+      return cb(null, true);
+    }
+    cb("Give proper files formate to upload");
+  },
+}).single("logo");
+
+
 
 
 
@@ -121,4 +152,5 @@ module.exports = {
   registerReseler,
   loginReseler,
   getMe,
+  upload,
 }

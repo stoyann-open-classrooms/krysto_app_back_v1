@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const moldProcessShema = mongoose.Schema(
   {
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     nom: {
       type: String,
       required: [true, 'Vous devez entrez un nom de process'],

@@ -2,10 +2,9 @@ const mongoose = require('mongoose')
 
 const colorShema = mongoose.Schema(
   {
-    colorRecipes: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: [true],
-        ref: 'ColorsRecipe',
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
     },
     nom: {
       type: String,

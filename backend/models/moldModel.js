@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const moldShema = mongoose.Schema(
   {
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour ce moule'],
@@ -23,10 +27,7 @@ const moldShema = mongoose.Schema(
       type: Number,
       required: [true, 'Vous devez une hauteur en CM pour ce moule'],
     },
-    motor: {
-      type: Number,
-      required: [true, 'Vous devez une hauteur en CM pour ce moule'],
-    },
+    
   },
   { timestamps: true },
 )

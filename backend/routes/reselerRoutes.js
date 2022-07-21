@@ -7,12 +7,13 @@ const {
   registerReseler,
   loginReseler,
   getMe,
+  upload,
 } = require('../controllers/reselerController')
 
 // ==== Middlewares
 const { protect } = require('../middleware/authMiddleware')
 
-router.post('/', registerReseler)
+router.post('/', upload, registerReseler)
 router.post('/login', loginReseler)
 router.get('/me', protect, getMe)
 

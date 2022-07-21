@@ -21,6 +21,10 @@ const krystoColorShema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'ReselerOrderLines',
   },
+  image: {
+    type: String,
+    required: [true, 'Vous devez charger une photo de profil'],
+  },
  
     name: {
       type: String,

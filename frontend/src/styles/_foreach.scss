@@ -1,0 +1,18 @@
+// ajoute dynamiquement les couleurs des tags et dropdowns
+
+$status: warning $warning,
+success $success,
+danger $danger;
+
+@each $statu in $status {
+  .#{nth($statu, 1)} {
+    background-color: nth($statu, 2);
+    color: $light;
+    border-radius:  $radius;
+    text-align: center;
+    font-size: 1.6rem;
+
+    margin: 1rem;
+    
+  }
+}

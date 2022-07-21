@@ -1,7 +1,9 @@
+import logo from './assets/logo_krysto.png'
 function App() {
   return (
     <div>
-      <h1>Krysto App </h1>
+   
+      <img src={logo} alt="" />
     </div>
   );
 }

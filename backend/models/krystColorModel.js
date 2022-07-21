@@ -2,10 +2,16 @@ const mongoose = require('mongoose')
 
 const krystoColorShema = mongoose.Schema(
   {
+
+
     recipe: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true],
         ref: 'ColorRecipe',
+    },
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
     },
     name: {
       type: String,

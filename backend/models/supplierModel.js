@@ -7,6 +7,10 @@ const supplierShema = mongoose.Schema(
         required: [true],
         ref: 'Adresse',
     },
+    logo: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     nom: {
       type: String,
       required: [true, 'Vous devez entrez un nom pour ce fournisseur'],

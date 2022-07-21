@@ -32,6 +32,8 @@ app.use('/api/reselers', require('./routes/reselerRoutes'))
 app.use('/api/reselerOrders', require('./routes/reselerOrderRoutes'))
 //Employe routes
 app.use('/api/employes', require('./routes/employeRoutes'))
+//PlasticType routes
+app.use('/api/plasticTypes', require('./routes/plasticTypeRoutes'))
 
 
 // ==== Start server

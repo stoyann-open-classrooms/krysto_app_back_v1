@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const reselerShema = mongoose.Schema(
   {
+    logo: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     name: {
       type: String,
       required: [true, 'Vous devez entrez votre nom'],
