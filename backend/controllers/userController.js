@@ -2,6 +2,9 @@
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+// image Upload dependence
+const multer = require("multer");
+const path = require("path");
 
 // ==== Models
 const User = require('../models/userModel')
@@ -37,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Create user
   const user = await User.create({
     username,
+    image: req.file.path,
     email,
     isAdmin,
     password: hashedPassword,
@@ -44,6 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user._id,
+      image: user.image,
       username: user.username,
       email: user.email,
       token: generateToken(user._id),
@@ -109,8 +114,41 @@ const generateToken = (id) => {
   })
 }
 
+
+
+
+// =========================== UPLOAD IMAGE CONTROLLER ========================================
+
+const im = "profil_pic";
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/upload/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, im + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: "1000000" },
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimeType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+
+    if (mimeType && extname) {
+      return cb(null, true);
+    }
+    cb("Give proper files formate to upload");
+  },
+}).single("image");
+
+
+
 module.exports = {
   registerUser,
   loginUser,
   getMe,
+  upload,
 }

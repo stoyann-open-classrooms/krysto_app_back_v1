@@ -17,6 +17,11 @@ const krystoColorShema = mongoose.Schema(
         required: [true],
         ref: 'MachinePark',
     },
+    orders: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'ReselerOrderLines',
+  },
+ 
     name: {
       type: String,
       required: [true, 'Vous devez entrez un nom de couleur'],

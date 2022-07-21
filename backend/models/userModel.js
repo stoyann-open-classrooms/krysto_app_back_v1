@@ -6,6 +6,10 @@ const userShema = mongoose.Schema(
       type: String,
       required: [true, 'Vous devez entrez votre nom'],
     },
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     email: {
       type: String,
       required: [true, 'Vous devez entrez un email valide'],

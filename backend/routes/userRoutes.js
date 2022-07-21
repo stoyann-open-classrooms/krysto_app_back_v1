@@ -5,6 +5,7 @@ const express = require('express')
 
 const router = express.Router()
 const {
+  upload,
   registerUser,
   loginUser,
   getMe,
@@ -13,7 +14,7 @@ const {
 // ==== Middlewares
 const { protect } = require('../middleware/authMiddleware')
 
-router.post('/', registerUser)
+router.post('/', upload, registerUser)
 router.post('/login', loginUser)
 router.get('/me', protect, getMe)
 

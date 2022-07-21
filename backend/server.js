@@ -2,9 +2,6 @@
 const express = require('express')
 const colors = require('colors')
 const dotenv = require('dotenv').config()
-// image upload dependances
-const multer = require('multer')
-const path = require('path')
 
 // ==== Variables & initialisation
 const PORT = process.env.PORT || 5000
@@ -16,7 +13,8 @@ const { errorHandler } = require('./middleware/errorMiddleware')
 //connect to database
 connectDB()
 
-
+// ===============================================static Images Folder
+app.use("/public/upload", express.static("./public/upload"));
 
 // ==== Routes
 app.use(express.urlencoded({ extended: false }))

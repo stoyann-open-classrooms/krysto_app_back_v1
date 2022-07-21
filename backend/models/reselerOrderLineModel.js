@@ -4,9 +4,9 @@ const reselerOrderLineShema = mongoose.Schema(
   {
     order: {
         type: mongoose.Schema.Types.ObjectId,
-  
         ref: 'ReselerOrder',
     },
+   
   
     quantity: {
       type: Number,
