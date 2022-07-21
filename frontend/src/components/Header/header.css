@@ -1,0 +1,148 @@
+@import url("https://use.typekit.net/hap5tri.css");
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: jaf-domus, sans-serif;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(59, 59, 141);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2.2;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+.warning {
+  background-color: #e9bc5a;
+  color: #d4d4d4;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
+.success {
+  background-color: #9Be86B;
+  color: #d4d4d4;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
+.danger {
+  background-color: #eb7e7e;
+  color: #d4d4d4;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
+@-webkit-keyframes flip-in-hor-top {
+  0% {
+    transform: rotateX(-80deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-in-hor-top {
+  0% {
+    transform: rotateX(-80deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #7c88dd;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+}
+
+header .logo {
+  width: 12rem;
+}
+
+header .logo img {
+  width: 12rem;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.header ul li {
+  margin-left: 3rem;
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header ul li a:hover {
+  color: #7c88dd;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}/*# sourceMappingURL=header.css.map */

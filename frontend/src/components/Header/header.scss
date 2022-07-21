@@ -1,0 +1,51 @@
+@import '../../styles/reset';
+@import '../../styles/variables';
+@import '../../styles/placeholders';
+@import '../../styles/mixins';
+@import '../../styles/foreach';
+@import '../../styles/animations';
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom: 3px solid $primary;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+  }
+  header .logo {
+    width: 12rem;
+  }
+  header .logo img {
+    width: 12rem;
+  }
+  .header ul {
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+  
+  .header ul li {
+    margin-left: 3rem;
+}
+
+.header ul li a {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+  
+  .header ul li a:hover {
+    color: $primary;
+  }
+  
+  .header ul li a svg {
+    margin-right: 5px;
+  }
+  

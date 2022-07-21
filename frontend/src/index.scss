@@ -5,17 +5,17 @@
 @import './styles/animations';
 @import './styles/placeholders';
 
-
-body{
-    background-color: $dark;
-    color: white;
+body {
+  background-color: $dark;
+  color: white;
 }
 
-h1{
-    background-color: $danger;
-    color: $dark;
-    font-weight: bolder;
-    text-transform: uppercase;
+.big-title {
+  color: $primary;
+  font-weight: bolder;
+  letter-spacing: 1.4px;
+  font-size: 3rem;
+  text-transform: uppercase;
 }
 .container {
   width: 100%;
@@ -25,48 +25,11 @@ h1{
   text-align: center;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
-}
-header .logo {
-  width: 150px;
-}
-header .logo img {
-  width: 150px;
-}
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header ul li {
-  margin-left: 20px;
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.header ul li a:hover {
-  color: #777;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
 .heading {
   font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 0 10px;
 }
 
 .heading p {
@@ -125,7 +88,7 @@ header .logo img {
 
 .btn {
   padding: 10px 20px;
-  border: 1px solid $darkBlue;
+  border: 1px solid $primary;
   border-radius: 5px;
   background: $primary;
   color: #fff;
@@ -237,7 +200,7 @@ header .logo img {
 }
 
 .status-closed {
-  background-color: $danger;
+  background-color: darkred;
   color: #fff;
   border-radius: 10px;
 }
