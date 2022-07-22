@@ -2,11 +2,7 @@ const mongoose = require('mongoose')
 
 const reselerOrderShema = mongoose.Schema(
   {
-    reseler: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: [true],
-        ref: 'Reseler',
-    },
+ 
   
      orderNum: {
         type: String,

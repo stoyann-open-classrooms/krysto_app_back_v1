@@ -2,10 +2,7 @@ const mongoose = require('mongoose')
 
 const quotationShema = mongoose.Schema(
   {
-    supplier: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Supplier',
-    },
+
     amount: {
       type: Number,
       required: [true, 'Vous devez entrez le montant de ce devis'],

@@ -8,9 +8,7 @@ const {getOrderLines, addOrderLines} = require('../controllers/reselerOrderLines
 // ==== Middlewares
 const {protect} = require('../middleware/authMiddleware')
 
-// ==== Routes
 
-router.route('/').get(protect, getOrderLines).post(protect, addOrderLines)
 
 
 module.exports = router

@@ -38,4 +38,4 @@ const upload = multer({
   },
 }).single("image");
 
-module.exports = {}
+module.exports = {upload}

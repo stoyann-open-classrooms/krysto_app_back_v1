@@ -26,14 +26,6 @@ app.get('/', (req, res) => {
 
 //User routes
 app.use('/api/users', require('./routes/userRoutes'))
-//Reseler routes
-app.use('/api/reselers', require('./routes/reselerRoutes'))
-//Order Reseler routes
-app.use('/api/reselerOrders', require('./routes/reselerOrderRoutes'))
-//Employe routes
-app.use('/api/employes', require('./routes/employeRoutes'))
-//PlasticType routes
-app.use('/api/plasticTypes', require('./routes/plasticTypeRoutes'))
 
 
 // ==== Start server

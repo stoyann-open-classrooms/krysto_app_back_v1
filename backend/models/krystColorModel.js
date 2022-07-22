@@ -11,7 +11,7 @@ const krystoColorShema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, 'Vous devez charger une photo de profil'],
+      required: [true, 'Vous devez charger une photo pour cette article'],
     },
     name: {
       type: String,

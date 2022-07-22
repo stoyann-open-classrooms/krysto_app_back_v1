@@ -1,43 +1,54 @@
-import { useState } from "react"
+import { useState , useEffect} from "react"
+import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FaUser} from 'react-icons/fa'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { register, reset } from '../features/auth/authSlice'
 function Register() {
+  
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    image: '',
+    image:'',
     password: '',
     password2: '',
   })
 
-  const { username, email, password, password2, image } = formData
- 
+  const { username, image, email, password, password2 } = formData
+
+  const dispatch = useDispatch()
+  const {user, isLoadind,isSuccess, message} = useSelector(state => state.auth)
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }))
   }
-const onSubmit = (e) =>  {
-  e.preventDefault()
-  if (password !== password2) {
-    toast.error('Les mots de passe ne sont pas identiques')
-  } else {
-    const userData = {
-      username,
-      email,
-      password,
-      image,
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    if (password !== password2) {
+      toast.error('Les mots de passe ne sont pas identiques')
+    } else {
+      const userData = {
+        username,
+        email,
+        password,
+        image,
+      }
+
+     dispatch(register(userData)) 
     }
-    console.log(userData);
-}}
+  }
+  
 const handleFile = (e) => {
   setFormData((prevState) => ({
     ...prevState,
     [e.target.name]: e.target.value,
   }))
 }
+
   return (
     <>
     <section className="heading">

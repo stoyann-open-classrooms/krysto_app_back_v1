@@ -2,11 +2,7 @@ const mongoose = require('mongoose')
 
 const rowMaterialShema = mongoose.Schema(
   {
-    suppliers: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: [true],
-      ref: 'Supplier',
-    },
+ 
     image: {
       type: String,
       required: [true, 'Vous devez charger une photo de profil'],

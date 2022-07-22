@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const userShema = mongoose.Schema(
   {
+    type: {
+      type: String,
+      enum: ["user", "admin", "employe", "fournisseur", "association", "revendeur"],
+      default: "user",
+    },
     username: {
       type: String,
       required: [true, 'Vous devez entrez votre nom'],
