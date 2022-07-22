@@ -2,27 +2,26 @@ const mongoose = require('mongoose')
 
 const recyclableProductTypeShema = mongoose.Schema(
   {
+    brand: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: 'Brand',
+    },
     image: {
       type: String,
-      required: [true, 'Vous devez charger une image pour ce produit'],
+      required: [true, 'Vous devez charger une photo de profil'],
     },
-    name: {
+    product: {
       type: String,
-      required: [true, 'Vous devez entrez un nom pour le type de plastique'],
-      unique: true,
+      required: [true, 'Vous devez entrer un nom pour cette categorie'],
     },
-    difficulty: {
-        type: String,
-        enum: [1, 2, 3, 4, 5],
-        default: 1,
-      },
     description: {
       type: String,
-      required: [true, 'Vous devez entrez une description pour le type de plastique'], 
+      required: [true, 'Vous devez entrer une descrition pour votre troc'],
     },
-    
+ 
   },
   { timestamps: true }
-) 
+)
 
 module.exports = mongoose.model('RecyclableProduct', recyclableProductTypeShema)

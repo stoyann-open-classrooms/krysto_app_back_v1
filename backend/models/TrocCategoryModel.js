@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
-const plasticTypeShema = mongoose.Schema(
+const trocCategoryShema = mongoose.Schema(
   {
+    trocs: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Troc',
+      },
     image: {
       type: String,
       required: [true, 'Vous devez charger une photo de profil'],
@@ -19,4 +23,4 @@ const plasticTypeShema = mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('PlasticType', plasticTypeShema)
+module.exports = mongoose.model('TrocCategory', trocCategoryShema)

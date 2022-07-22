@@ -7,6 +7,10 @@ const trocShema = mongoose.Schema(
       required: [true],
       ref: 'User',
     },
+    image: {
+      type: String,
+      required: [true, 'Vous devez charger une photo de profil'],
+    },
     type: {
       type: String,
       required: [true, 'Merci de selectionner un type de troc'],

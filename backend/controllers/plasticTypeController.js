@@ -1,49 +1,73 @@
-// ==== Dependances
 const asyncHandler = require('express-async-handler')
 // image Upload dependence
-const multer = require("multer");
-const path = require("path");
-// ==== Models
+const multer = require('multer')
+const path = require('path')
+
+//models
+
+const User = require('../models/userModel')
 const PlasticType = require('../models/plasticTypeModel')
 
-// @desc Get reseler Orders
-// @route /api/reselerOrders
-// @ access Public 
+// @desc Get All plastic types
+// @route GET /api/plasticTypes
+// @ access Public
+const getAllPlasticTypes = asyncHandler(async (req, res) => {
+  const plasticTypes = await PlasticType.find()
+  res.status(200).json(plasticTypes)
+})
 
-const getAllTypes = asyncHandler(async (req, res) => {
-     const types = await PlasticType.find()
-     res.status(200).json(types)
+// @desc Create plastic type
+// @route  POST /api/plasticTypes
+// @ access Private
+const createPlasticType = asyncHandler(async (req, res) => {
+  const { title, description, image } = req.body
+
+  if (!title || !description) {
+    res.status(400)
+    throw new Error("Merci d'entrez un titre et une déscription")
+  }
+
+  // get user using the id and JWT
+  const user = await User.findById(req.user.id)
+  if (!user) {
+    res.status(401)
+    throw new Error('Uttilisateur non trouvé')
+  }
+  const plasticType = await PlasticType.create({
+    title,
+    image: req.file.path,
+    description,
   })
+  res.status(201).json(plasticType)
+})
 
-
-
-
-// =========================== UPLOAD IMAGE CONTROLLER ========================================
-
-const im = "plastic_symbol";
+const im = 'plastic_type_symbol'
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/upload/");
+    cb(null, 'public/upload/plastic_types')
   },
   filename: (req, file, cb) => {
-    cb(null, im + Date.now() + path.extname(file.originalname));
+    cb(null, im + Date.now() + path.extname(file.originalname))
   },
-});
+})
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: "1000000" },
+  limits: { fileSize: '1000000' },
   fileFilter: (req, file, cb) => {
-    const fileTypes = /jpeg|jpg|png|gif/;
-    const mimeType = fileTypes.test(file.mimetype);
-    const extname = fileTypes.test(path.extname(file.originalname));
+    const fileTypes = /jpeg|jpg|png|gif/
+    const mimeType = fileTypes.test(file.mimetype)
+    const extname = fileTypes.test(path.extname(file.originalname))
 
     if (mimeType && extname) {
-      return cb(null, true);
+      return cb(null, true)
     }
-    cb("Give proper files formate to upload");
+    cb('Give proper files formate to upload')
   },
-}).single("symbol");
+}).single('image')
 
-
-module.exports = {upload, getAllTypes}
+module.exports = {
+  upload,
+  getAllPlasticTypes,
+  createPlasticType,
+}

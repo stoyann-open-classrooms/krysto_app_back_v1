@@ -1,11 +1,26 @@
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 const Troc = require('../models/trocModel')
+// image Upload dependence
+const multer = require("multer");
+const path = require("path");
+
+// @desc Get User trocs
+// @route GET /api/trocs/all
+// @ access Public
+const getAllTrocs = asyncHandler(async (req, res) => {
+
+  const trocs = await Troc.find()
+  res.status(200).json(trocs)
+
+})
+
+
 
 // @desc Get User trocs
 // @route GET /api/trocs
 // @ access Private
-const getTrocs = asyncHandler(async (req, res) => {
+const getUserTrocs = asyncHandler(async (req, res) => {
   // get user using the id and JWT
 
   
@@ -22,7 +37,7 @@ const getTrocs = asyncHandler(async (req, res) => {
 // @desc Get User troc
 // @route GET /api/troc/:id
 // @ access Private
-const getTroc = asyncHandler(async (req, res) => {
+const getUserTroc = asyncHandler(async (req, res) => {
   // get user using the id and JWT
 
   const user = await User.findById(req.user.id)
@@ -49,7 +64,7 @@ const getTroc = asyncHandler(async (req, res) => {
 // @route  POST /api/trocs
 // @ access Private
 const createTroc = asyncHandler(async (req, res) => {
-  const { title, type, description, status } = req.body
+  const { title, type, description, status, image } = req.body
 
   if (!title || !description) {
     res.status(400)
@@ -66,14 +81,15 @@ const createTroc = asyncHandler(async (req, res) => {
     res.status(401)
     throw new Error('Uttilisateur non trouvé')
   }
-  const ticket = await Troc.create({
+  const troc = await Troc.create({
     title,
+    image: req.file.path,
     description,
     type,
     user: req.user.id,
     status: 'publiée',
   })
-  res.status(201).json(ticket)
+  res.status(201).json(troc)
 })
 
 // @desc  Delete troc
@@ -133,10 +149,43 @@ const updateTroc = asyncHandler(async (req, res) => {
   res.status(200).json(updatedTroc)
 })
 
+
+// =========================== UPLOAD IMAGE CONTROLLER ========================================
+
+const im = "troc_pic";
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/upload/troc_pics");
+  },
+  filename: (req, file, cb) => {
+    cb(null, im + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: "1000000" },
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimeType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+
+    if (mimeType && extname) {
+      return cb(null, true);
+    }
+    cb("Give proper files formate to upload");
+  },
+}).single("image");
+
+
+
+
 module.exports = {
-  getTrocs,
+  getUserTrocs,
+  getAllTrocs,
   createTroc,
-  getTroc,
+upload,
+  getUserTroc,
   updateTroc,
   deleteTroc,
 }

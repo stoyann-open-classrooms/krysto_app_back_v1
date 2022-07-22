@@ -13,7 +13,7 @@ const User = require('../models/userModel')
 // @route :  /api/users
 // @ access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, isAdmin } = req.body
+  const { username, email, password, isAdmin , image} = req.body
   // validation
   if (!username) {
     res.status(400)
@@ -119,10 +119,10 @@ const generateToken = (id) => {
 
 // =========================== UPLOAD IMAGE CONTROLLER ========================================
 
-const im = "profil_pic";
+const im = "user_pic";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/upload/user_pic");
+    cb(null, "public/upload/user_pics");
   },
   filename: (req, file, cb) => {
     cb(null, im + Date.now() + path.extname(file.originalname));
