@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 
 //User routes
 app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/trocs', require('./routes/trocRoutes'))
 
 
 // ==== Start server

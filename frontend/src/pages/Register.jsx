@@ -17,7 +17,7 @@ function Register() {
   const { username, image, email, password, password2 } = formData
 
   const dispatch = useDispatch()
-  const {user, isLoadind,isSuccess, message} = useSelector(state => state.auth)
+  
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -38,7 +38,7 @@ function Register() {
         image,
       }
 
-     dispatch(register(userData)) 
+    console.log(userData);
     }
   }
   
