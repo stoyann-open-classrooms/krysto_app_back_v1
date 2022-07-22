@@ -122,7 +122,7 @@ const generateToken = (id) => {
 const im = "profil_pic";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/upload/");
+    cb(null, "public/upload/user_pic");
   },
   filename: (req, file, cb) => {
     cb(null, im + Date.now() + path.extname(file.originalname));
